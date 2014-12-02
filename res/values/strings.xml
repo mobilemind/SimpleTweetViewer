@@ -4,13 +4,18 @@
     <string name="app_name">Simple Tweet Viewer</string>
     <string name="action_settings">Settings</string>
     <string name="oauth_label">Authenticate with Twitter</string>
-    <string name="title_activity_timeline">TimelineActivity</string>
+    <string name="title_activity_timeline">Tweets</string>
     <string name="username_label">\@user</string>
     <string name="placeholder_time_text">a moment ago</string>
     <string name="placeholder_tweet_text">Hello twitter.</string>
-    <string name="title_activity_compose">ComposeActivity</string>
+    <string name="title_activity_compose">Compose</string>
     <string name="action_compose">Compose</string>
     <string name="bt_submit">Submit</string>
-    <string name="title_activity_profile">ProfileActivity</string>
-
+    <string name="title_activity_profile">Profile</string>
+    <string name="profile_description_text">Twitter User Profile</string>
+    <string name="placeholder_user_name_text">User Name</string>
+    <string name="placeholder_user_bio_text">User Bio</string>
+	<string name="placeholder_followers_text">0 Followers</string>
+	<string name="placeholder_following_text">0 Following</string>
+	
 </resources>

@@ -57,13 +57,13 @@ public class ProfileActivity extends FragmentActivity {
 
 	private void populateProfileHeader(User u) {
 		TextView tvName = (TextView) findViewById(R.id.tvName);
-		TextView tvTagline = (TextView) findViewById(R.id.tvTagline);
+		TextView tvBio = (TextView) findViewById(R.id.tvBio);
 		TextView tvFollowers = (TextView)findViewById(R.id.tvFollowers);
 		TextView tvFollowing = (TextView)findViewById(R.id.tvFollowing);
 		ImageView ivProfileImage = (ImageView)findViewById(R.id.ivProfileImage);
 		
 		tvName.setText(u.getName());
-		tvTagline.setText(u.getDescription());
+		tvBio.setText(u.getDescription());
 		tvFollowers.setText(u.getFollowersCount() + " Followers");
 		tvFollowing.setText(u.getFriendsCount() + " Following");
 		

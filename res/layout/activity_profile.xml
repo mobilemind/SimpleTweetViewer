@@ -13,6 +13,7 @@
         android:layout_alignParentTop="true" >
 
         <ImageView
+            android:contentDescription="@string/profile_description_text"
             android:id="@+id/ivProfileImage"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -27,17 +28,20 @@
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/ivProfileImage"
             android:layout_toRightOf="@+id/ivProfileImage"
-            android:text="Name"
-            android:textSize="16sp" />
+            android:text="@string/placeholder_user_name_text"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvTagline"
+            android:id="@+id/tvBio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/tvName"
             android:layout_below="@+id/tvName"
-            android:text="Tagline"
-            android:textSize="12sp" />
+            android:text="@string/placeholder_user_bio_text"
+            android:textSize="12sp"
+            android:textStyle="italic" />
+
     </RelativeLayout>
 
     <LinearLayout
@@ -54,16 +58,15 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:text="5 Followers" />
+            android:text="@string/placeholder_followers_text" />
 
         <TextView
             android:id="@+id/tvFollowing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            
-            android:text="5 Following" />
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"    
+            android:text="@string/placeholder_following_text" />
     </LinearLayout>
 
     <fragment
