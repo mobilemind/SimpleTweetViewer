@@ -9,7 +9,7 @@ Time Spent: #.# hours
 ## User Stories
 
 ### Mandatory
-1. [ ] User can sign in using OAuth login flow
+1. [X] User can sign in using OAuth login flow
 2. [ ] User can view last 25 tweets from their home timeline 
     a. [ ] User should be able to see the user, body and timestamp for tweet 
     b. [ ] User should be displayed the relative timestamp for a tweet "8m", "7h" 
