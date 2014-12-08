@@ -5,6 +5,8 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnKeyListener;
@@ -30,7 +32,7 @@ public class ComposeActivity extends Activity {
 		etComposeTweet = (EditText) findViewById(R.id.etComposeTweet);
 		etCharsAvail = (EditText) findViewById(R.id.etCharsAvail);
 		client = TwitterApplication.getRestClient();
-		setupEditTextViewListener();
+		setupEditTextViewChangedListener();
 	}
 
 	public void onSubmit(View view) {
@@ -47,22 +49,15 @@ public class ComposeActivity extends Activity {
 		}, tweetText);
 	}
 
-	private void updateCharsAvailable() {
-		int charsAvail = 140 - etComposeTweet.getText().toString().length();
-		etCharsAvail.setText(String.valueOf(charsAvail));
-	}
-
-	private void setupEditTextViewListener() {
-		etComposeTweet.setOnKeyListener(new OnKeyListener() {
-			@Override
-			public boolean onKey(View v, int keyCode, KeyEvent event) {
-				if (event.getAction() == KeyEvent.ACTION_UP) {
-					updateCharsAvailable();
-					return false;
-				}
-				return false;
-			}
-		});
+	private void setupEditTextViewChangedListener() {
+		etComposeTweet.addTextChangedListener(new TextWatcher() {
+			public void afterTextChanged(Editable s) {
+				int charsAvail = 140 - etComposeTweet.getText().toString().length();
+				etCharsAvail.setText(String.valueOf(charsAvail));
+	        }
+	        public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+	        public void onTextChanged(CharSequence s, int start, int before, int count){}
+	    }); 
 	}
 
 }
