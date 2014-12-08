@@ -9,8 +9,9 @@
     <string name="placeholder_time_text">a moment ago</string>
     <string name="placeholder_tweet_text">Hello twitter.</string>
     <string name="title_activity_compose">Compose</string>
+    <string name="compose_tweet_hint">compose your tweet</string>
     <string name="action_compose">Compose</string>
-    <string name="bt_submit">Submit</string>
+    <string name="bt_send_tweet_label">send tweet</string>
     <string name="title_activity_profile">Profile</string>
     <string name="profile_description_text">Twitter User Profile</string>
     <string name="placeholder_user_name_text">User Name</string>
