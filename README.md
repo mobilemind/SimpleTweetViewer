@@ -12,16 +12,16 @@ Time Spent: 16 hours
 #### Week 4
 1. [X] User can sign in using OAuth login flow
 2. [X] User can view last 25 tweets from their home timeline 
-    a. [X] User should be able to see the user, body and timestamp for tweet 
-    b. [X] User should be displayed the relative timestamp for a tweet "8m", "7h" 
-    c. [X] __OPTIONAL__: Links in tweets are clickable and viewable 
+    [X] User should be able to see the user, body and timestamp for tweet 
+    [X] User should be displayed the relative timestamp for a tweet "8m", "7h" 
+    [X] __OPTIONAL__: Links in tweets are clickable and viewable 
 3. [X] User can load more tweets once they reach the bottom of the list using "infinite scroll" pagination 
 4. [X] User can compose a new tweet 
-    a. [X] User can click a "Compose" icon in the Action Bar on the top right 
-    b. [X] User will have a Compose view opened 
-    c. [X] User can enter a message and hit a button to post to twitter 
-    d. [X] User should be taken back to home timeline with new tweet visible 
-    e. [ ] __OPTIONAL__: User can see a counter with total number of characters left for tweet 
+    [X] User can click a "Compose" icon in the Action Bar on the top right 
+    [X] User will have a Compose view opened 
+    [X] User can enter a message and hit a button to post to twitter 
+    [X] User should be taken back to home timeline with new tweet visible 
+    [ ] __OPTIONAL__: User can see a counter with total number of characters left for tweet 
 
 #### Week 5
 1. [X] User can switch between Timeline and Mention views using tabs. 
