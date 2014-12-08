@@ -11,6 +11,8 @@
     <string name="title_activity_compose">Compose</string>
     <string name="compose_tweet_hint">compose your tweet</string>
     <string name="action_compose">Compose</string>
+    <string name="max_chars_text">140</string>
+    <string name="chars_avail_label">characters available</string>
     <string name="bt_send_tweet_label">send tweet</string>
     <string name="title_activity_profile">Profile</string>
     <string name="profile_description_text">Twitter User Profile</string>

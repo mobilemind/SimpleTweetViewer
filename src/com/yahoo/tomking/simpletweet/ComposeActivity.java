@@ -5,7 +5,9 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.View.OnKeyListener;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -17,19 +19,21 @@ public class ComposeActivity extends Activity {
 	private TwitterClient client;
 	private Tweet tweet;
 	public static final int REQUEST_CODE = 0;
+	private EditText etComposeTweet;
+	private EditText etCharsAvail;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Toast.makeText(this, "Use Back to cancel", Toast.LENGTH_SHORT).show();
 		setContentView(R.layout.activity_compose);
+		etComposeTweet = (EditText) findViewById(R.id.etComposeTweet);
+		etCharsAvail = (EditText) findViewById(R.id.etCharsAvail);
 		client = TwitterApplication.getRestClient();
-
+		setupEditTextViewListener();
 	}
 
 	public void onSubmit(View view) {
-		EditText etComposeTweet = (EditText) findViewById(R.id.etComposeTweet);
-
 		String tweetText = etComposeTweet.getText().toString();
 		client.postNewTweet(new JsonHttpResponseHandler() {
 			@Override
@@ -42,4 +46,23 @@ public class ComposeActivity extends Activity {
 			}
 		}, tweetText);
 	}
+
+	private void updateCharsAvailable() {
+		int charsAvail = 140 - etComposeTweet.getText().toString().length();
+		etCharsAvail.setText(String.valueOf(charsAvail));
+	}
+
+	private void setupEditTextViewListener() {
+		etComposeTweet.setOnKeyListener(new OnKeyListener() {
+			@Override
+			public boolean onKey(View v, int keyCode, KeyEvent event) {
+				if (event.getAction() == KeyEvent.ACTION_UP) {
+					updateCharsAvailable();
+					return false;
+				}
+				return false;
+			}
+		});
+	}
+
 }

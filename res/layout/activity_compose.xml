@@ -17,17 +17,50 @@
         android:gravity="top"
         android:hint="@string/compose_tweet_hint"
         android:inputType="textMultiLine"
-        android:lines="4"
-        android:minLines="4"
+        android:lines="5"
+        android:minLines="5"
         android:maxLines="6"
         android:maxLength="140" />
+
+    <EditText
+        android:id="@+id/etCharsAvail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/etComposeTweet"
+        android:clickable="false"
+        android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:inputType="number"
+        android:lines="1"
+        android:longClickable="false"
+        android:maxLength="3"
+        android:maxLines="1"
+        android:textSize="14sp"
+        android:maxWidth="42dp"
+        android:width="42dp"
+        android:paddingLeft="6dp"
+        android:scrollbarAlwaysDrawVerticalTrack="false"
+        android:text="@string/max_chars_text" />
+
+    <TextView
+        android:id="@+id/tvCharsAvailLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/etCharsAvail"
+        android:layout_alignBottom="@+id/etCharsAvail"
+        android:layout_toRightOf="@+id/etCharsAvail"
+        android:text="@string/chars_avail_label"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <Button
         android:id="@+id/btSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etComposeTweet"
+        android:layout_below="@+id/etCharsAvail"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
         android:onClick="onSubmit"
         android:text="@string/bt_send_tweet_label" />
 
