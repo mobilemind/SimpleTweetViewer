@@ -37,11 +37,13 @@ public abstract class TweetsListFragment extends Fragment {
 	private TwitterClient client;
 
 	protected abstract void setLastItemId(long uid);
+
 	protected abstract long getLastItemId();
+
 	protected abstract void getTimeline();
 
 	public void populateTimeline() {
-		if (!isNetworkAvailable()) {
+		if (! isNetworkAvailable()) {
 			if (getLastItemId() == 0) {
 				populateTimelineOffline();
 			}
@@ -49,31 +51,27 @@ public abstract class TweetsListFragment extends Fragment {
 		}
 		getTimeline();
 	}
-	
-	
-
 
 	private void populateTimelineOffline() {
+		Toast.makeText(getActivity(), "Retrieving offline data from DB...", Toast.LENGTH_SHORT).show();
 		List<Tweet> retrievedTweets = Tweet.getAll();
 		addAll(retrievedTweets);
 		updateLastItemId();
 		finishedRefreshing();
-		Toast.makeText(getActivity(), "Retrieved offline data from DB", Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		//inflate our layout
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		// inflate our layout
 		View v = inflater.inflate(R.layout.fragment_tweets_list, container, false);
-		//assign our view references
-		lvTweets = (ListView)v.findViewById(R.id.lvTweets);
-		lvTweets.setAdapter(aTweets);		
+		// assign our view references
+		lvTweets = (ListView) v.findViewById(R.id.lvTweets);
+		lvTweets.setAdapter(aTweets);
 		setupEndlessScroll();
 		setupPullToRefresh(v);
 		setLastItemId(0);
 		populateTimeline();
-		//return the layout view
+		// return the layout view
 		return v;
 	}
 
@@ -85,8 +83,6 @@ public abstract class TweetsListFragment extends Fragment {
 		setClient(TwitterApplication.getRestClient());
 
 	}
-	
-	
 
 	public void addAll(List<Tweet> tweets) {
 		aTweets.addAll(tweets);
@@ -96,50 +92,53 @@ public abstract class TweetsListFragment extends Fragment {
 		aTweets.clear();
 	}
 
-
 	public void insertAtFront(Tweet tweet) {
-		aTweets.insert(tweet, 0);		
-	}
-	
-	protected Tweet getLastItem() {
-		return aTweets.getItem(aTweets.getCount()-1);
+		aTweets.insert(tweet, 0);
 	}
 
-	
+	protected Tweet getLastItem() {
+		return aTweets.getItem(aTweets.getCount() - 1);
+	}
+
 	public void finishedRefreshing() {
 		if (swipeContainer != null) {
 			swipeContainer.setRefreshing(false);
 		}
 	}
-	
+
 	protected void loadFromDb() {
 		this.tweets = Tweet.getAll();
 	}
-	
+
 	protected void setupEndlessScroll() {
 		lvTweets.setOnScrollListener(getScrollListener());
 	}
 
-	
 	protected void setupPullToRefresh(View v) {
 		swipeContainer = (SwipeRefreshLayout) v.findViewById(R.id.swipeContainer);
 		// Setup refresh listener which triggers new data loading
 		swipeContainer.setOnRefreshListener(getRefreshListener());
 		// Configure the refreshing colors
-		swipeContainer.setColorScheme(android.R.color.holo_blue_bright, 
-				android.R.color.holo_green_light, 
-				android.R.color.holo_orange_light, 
+		swipeContainer.setColorScheme(
+				android.R.color.holo_blue_bright,
+				android.R.color.holo_green_light,
+				android.R.color.holo_orange_light,
 				android.R.color.holo_red_light);
 	}
-	
-	
-	
+
 	public Boolean isNetworkAvailable() {
 		ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-		return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting();
+		NetworkInfo activeNetworkInfo = null;
+		if (connectivityManager != null) {
+			activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+		}
+		boolean connectedOrConnecting = false;
+		if (activeNetworkInfo != null) {
+			connectedOrConnecting = activeNetworkInfo.isConnectedOrConnecting();
+		}
+		return connectedOrConnecting;
 	}
-	
+
 	public void handleIntentData(Intent data) {
 		Tweet tweet = (Tweet) data.getSerializableExtra(Tweet.kTWEET_KEY);
 		if (tweet != null) {
@@ -154,11 +153,9 @@ public abstract class TweetsListFragment extends Fragment {
 	public void setClient(TwitterClient client) {
 		this.client = client;
 	}
-	
-	protected JsonHttpResponseHandler getResponseHandler(final long lastItemId,
-			final TweetsListFragment parentContext) {
-		return new JsonHttpResponseHandler() {
 
+	protected JsonHttpResponseHandler getResponseHandler(final long lastItemId, final TweetsListFragment parentContext) {
+		return new JsonHttpResponseHandler() {
 			@Override
 			public void onSuccess(JSONArray json) {
 				if (lastItemId == 0) {
@@ -173,22 +170,21 @@ public abstract class TweetsListFragment extends Fragment {
 
 			@Override
 			public void onFailure(Throwable e, String s) {
-				Toast.makeText(parentContext.getActivity(), "Failed to get data from Twitter, loading from DB", Toast.LENGTH_SHORT).show();
+				Toast.makeText(parentContext.getActivity(), "Unable to load data from Twitter,\ntrying local database", Toast.LENGTH_SHORT).show();
 				loadFromDb();
 				finishedRefreshing();
 			}
 		};
 	}
-	
+
 	protected OnRefreshListener getRefreshListener() {
 		return new OnRefreshListener() {
 			@Override
 			public void onRefresh() {
 				populateTimeline();
-			} 
+			}
 		};
 	}
-	
 
 	protected EndlessScrollListener getScrollListener() {
 		return new EndlessScrollListener() {
@@ -198,13 +194,12 @@ public abstract class TweetsListFragment extends Fragment {
 			}
 		};
 	}
-	
+
 	protected void updateLastItemId() {
 		Tweet lastItem = getLastItem();
 		if (lastItem != null) {
 			setLastItemId(lastItem.getUid());
 		}
 	}
-
 
 }
