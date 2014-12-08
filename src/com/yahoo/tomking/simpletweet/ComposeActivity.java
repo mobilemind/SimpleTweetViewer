@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.yahoo.tomking.simpletweet.R;
@@ -17,18 +18,18 @@ public class ComposeActivity extends Activity {
 	private Tweet tweet;
 	public static final int REQUEST_CODE = 0;
 
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Toast.makeText(this, "Use Back to cancel", Toast.LENGTH_SHORT).show();
 		setContentView(R.layout.activity_compose);
 		client = TwitterApplication.getRestClient();
 
 	}
-	
+
 	public void onSubmit(View view) {
 		EditText etComposeTweet = (EditText) findViewById(R.id.etComposeTweet);
-		
+
 		String tweetText = etComposeTweet.getText().toString();
 		client.postNewTweet(new JsonHttpResponseHandler() {
 			@Override

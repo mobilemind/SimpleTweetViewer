@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -21,9 +22,10 @@ public class ProfileActivity extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Toast.makeText(this, "Use Back to return to timeline", Toast.LENGTH_SHORT).show();
 		setContentView(R.layout.activity_profile);
 		Intent i = getIntent();
-		User user = (User)i.getSerializableExtra("user");
+		User user = (User) i.getSerializableExtra("user");
 		userTimelineFragment = (UserTimelineFragment) getFragmentManager().findFragmentById(R.id.fragmentUserTimeline);
 		userTimelineFragment.setUser(user);
 		loadProfileInfo(user);
@@ -31,22 +33,22 @@ public class ProfileActivity extends FragmentActivity {
 
 	private void loadProfileInfo(User user) {
 		if (user == null) {
-			TwitterApplication.getRestClient().getMyInfo(new JsonHttpResponseHandler() {
-				@Override
-				public void onSuccess(JSONObject json) {
-					User u = User.fromJson(json);
-					loadProfileResults(u);
-				}
+			TwitterApplication.getRestClient().getMyInfo(
+					new JsonHttpResponseHandler() {
+						@Override
+						public void onSuccess(JSONObject json) {
+							User u = User.fromJson(json);
+							loadProfileResults(u);
+						}
 
-				
-			});
+					});
 		} else {
 			loadProfileResults(user);
 		}
 	}
-	
+
 	private void loadProfileResults(User u) {
-		getActionBar().setTitle( "@" + u.getScreenName());
+		getActionBar().setTitle("@" + u.getScreenName());
 		populateProfileHeader(u);
 		populateProfileList(u);
 	}
@@ -58,16 +60,17 @@ public class ProfileActivity extends FragmentActivity {
 	private void populateProfileHeader(User u) {
 		TextView tvName = (TextView) findViewById(R.id.tvName);
 		TextView tvBio = (TextView) findViewById(R.id.tvBio);
-		TextView tvFollowers = (TextView)findViewById(R.id.tvFollowers);
-		TextView tvFollowing = (TextView)findViewById(R.id.tvFollowing);
-		ImageView ivProfileImage = (ImageView)findViewById(R.id.ivProfileImage);
-		
+		TextView tvFollowers = (TextView) findViewById(R.id.tvFollowers);
+		TextView tvFollowing = (TextView) findViewById(R.id.tvFollowing);
+		ImageView ivProfileImage = (ImageView) findViewById(R.id.ivProfileImage);
+
 		tvName.setText(u.getName());
 		tvBio.setText(u.getDescription());
 		tvFollowers.setText(u.getFollowersCount() + " Followers");
 		tvFollowing.setText(u.getFriendsCount() + " Following");
-		
-		ImageLoader.getInstance().displayImage(u.getProfileImageUrl(), ivProfileImage);
-		
+
+		ImageLoader.getInstance().displayImage(u.getProfileImageUrl(),
+				ivProfileImage);
+
 	}
 }
