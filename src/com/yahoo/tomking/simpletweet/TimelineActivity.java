@@ -61,20 +61,19 @@ public class TimelineActivity extends FragmentActivity {
 			.setTabListener(
 				new FragmentTabListener<HomeTimeLineFragment>(R.id.flContainer, this, "home",
 						HomeTimeLineFragment.class));
-
 		actionBar.addTab(tab1);
-		actionBar.selectTab(tab1);
-
 		Tab tab2 = actionBar
 			.newTab()
 			.setText("Mentions")
 			.setIcon(R.drawable.ic_mentions)
 			.setTag("MentionsTimeLineFragment")
 			.setTabListener(
-			    new FragmentTabListener<MentionsTimeLineFragment>(R.id.flContainer, this, "mentions",
-			    		MentionsTimeLineFragment.class));
-
+						new FragmentTabListener<MentionsTimeLineFragment>(
+								R.id.flContainer, this, "mentions",
+								MentionsTimeLineFragment.class));
 		actionBar.addTab(tab2);
+		
+		actionBar.selectTab(tab1);
 	}
 
 }

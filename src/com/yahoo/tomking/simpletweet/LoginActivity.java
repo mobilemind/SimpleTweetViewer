@@ -27,8 +27,8 @@ public class LoginActivity extends OAuthLoginActivity<TwitterClient> {
 	// called if OAuth succeeds...
 	@Override
 	public void onLoginSuccess() {
-		 Intent i = new Intent(this, TimelineActivity.class);
-		 startActivity(i);
+		Intent i = new Intent(this, TimelineActivity.class);
+		startActivity(i);
 		Toast.makeText(this, "Authenticated with twitter.com", Toast.LENGTH_SHORT).show();
 	}
 

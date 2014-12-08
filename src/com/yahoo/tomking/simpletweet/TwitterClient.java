@@ -53,8 +53,7 @@ public class TwitterClient extends OAuthBaseClient {
 		getTimeline(handler, lastId, STATUSES_HOME_TIMELINE_JSON);
 	}
 
-	public void getMentionsTimeline(
-			AsyncHttpResponseHandler handler, long lastId) {
+	public void getMentionsTimeline(AsyncHttpResponseHandler handler, long lastId) {
 		getTimeline(handler, lastId, STATUSES_MENTIONS_TIMELINE_JSON);
 	}
 	

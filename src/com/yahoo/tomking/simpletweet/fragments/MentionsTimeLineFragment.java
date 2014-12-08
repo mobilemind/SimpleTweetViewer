@@ -2,7 +2,6 @@ package com.yahoo.tomking.simpletweet.fragments;
 
 import android.os.Bundle;
 
-
 public class MentionsTimeLineFragment extends TweetsListFragment {
 	private long lastItemId;
 
@@ -16,17 +15,16 @@ public class MentionsTimeLineFragment extends TweetsListFragment {
 		return lastItemId;
 	}
 
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		lastItemId = 0;
-		populateTimeline();		
+		populateTimeline();
 	}
-	
+
 	@Override
 	protected void getTimeline() {
-		getClient().getMentionsTimeline(getResponseHandler(getLastItemId(), this), getLastItemId());		
+		getClient().getMentionsTimeline(getResponseHandler(getLastItemId(), this), getLastItemId());
 	}
 
 }

@@ -23,11 +23,10 @@ import com.yahoo.tomking.simpletweet.models.User;
 
 public class TweetArrayAdapter extends ArrayAdapter<Tweet> {
 
-	public TweetArrayAdapter(Context context,
-			List<Tweet> tweets) {
+	public TweetArrayAdapter(Context context, List<Tweet> tweets) {
 		super(context, 0, tweets);
 	}
-	
+
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View v;
@@ -37,7 +36,7 @@ public class TweetArrayAdapter extends ArrayAdapter<Tweet> {
 		} else {
 			v = convertView;
 		}
-		
+
 		ImageView ivProfileImage = (ImageView) v.findViewById(R.id.ivProfileImage);
 		TextView tvUserName = (TextView) v.findViewById(R.id.tvScreenName);
 		TextView tvBody = (TextView) v.findViewById(R.id.tvBody);
@@ -49,18 +48,18 @@ public class TweetArrayAdapter extends ArrayAdapter<Tweet> {
 		setImage(ivProfileImage, user.getProfileImageUrl());
 		ivProfileImage.setTag(user);
 		ivProfileImage.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				Intent i = new Intent(getContext(), ProfileActivity.class);
-				i.putExtra("user", (User)v.getTag());
+				i.putExtra("user", (User) v.getTag());
 				getContext().startActivity(i);
 			}
 		});
 		tvUserName.setText(user.getScreenName());
 		tvBody.setText(tweet.getBody());
 		tvTimestamp.setText(getRelativeTime(tweet.getCreatedAt()));
-		
+
 		return v;
 	}
 
@@ -69,13 +68,13 @@ public class TweetArrayAdapter extends ArrayAdapter<Tweet> {
 		ImageLoader imageLoader = ImageLoader.getInstance();
 		imageLoader.displayImage(profileImageUrl, ivProfileImage);
 	}
-	
+
 	// getRelativeTimeAgo("Mon Apr 01 21:16:23 +0000 2014");
 	public static String getRelativeTime(String rawJsonDate) {
 		String twitterFormat = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
 		SimpleDateFormat sdf = new SimpleDateFormat(twitterFormat, Locale.ENGLISH);
 		sdf.setLenient(true);
-	 
+
 		String relativeDate = "";
 		try {
 			long dateMillis = sdf.parse(rawJsonDate).getTime();
@@ -84,7 +83,7 @@ public class TweetArrayAdapter extends ArrayAdapter<Tweet> {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-	 
+
 		return relativeDate;
 	}
 

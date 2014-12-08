@@ -20,7 +20,7 @@ public class UserTimelineFragment extends TweetsListFragment {
 
 	@Override
 	protected void getTimeline() {
-		getClient().getUserTimeline(getResponseHandler(getLastItemId(), this), user);		
+		getClient().getUserTimeline(getResponseHandler(getLastItemId(), this), user);
 	}
 
 	public void setUser(User u) {
