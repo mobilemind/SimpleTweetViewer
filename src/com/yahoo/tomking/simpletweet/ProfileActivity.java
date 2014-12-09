@@ -28,6 +28,7 @@ public class ProfileActivity extends FragmentActivity {
 		User user = (User) i.getSerializableExtra("user");
 		userTimelineFragment = (UserTimelineFragment) getFragmentManager().findFragmentById(R.id.fragmentUserTimeline);
 		userTimelineFragment.setUser(user);
+		userTimelineFragment.getTimeline();
 		loadProfileInfo(user);
 	}
 
@@ -54,6 +55,7 @@ public class ProfileActivity extends FragmentActivity {
 	}
 
 	private void populateProfileList(User u) {
+		userTimelineFragment.setUser(u);
 		userTimelineFragment.populateTimeline();
 	}
 
