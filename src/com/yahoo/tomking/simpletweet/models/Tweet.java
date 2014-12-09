@@ -23,8 +23,10 @@ public class Tweet extends Model implements Serializable{
 	public static final String kTWEET_KEY = "tweet";
 
 	// required by convention for serialized data
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 3L;
 	
+	// set unique true and make replace the conflict action
+	// for some reason, uid doesn't seem unique-- I tried jumping through hoops with JSON double --> String --> long with no success
 	@Column(name = "uid", unique = true, onUniqueConflict = Column.ConflictAction.REPLACE)
 	private long uid;
 	
@@ -88,7 +90,7 @@ public class Tweet extends Model implements Serializable{
 		Tweet tweet = new Tweet();
 		try {
 			tweet.body = jsonObject.getString(kTEXT);
-			tweet.uid = jsonObject.getLong(kID);
+			tweet.uid = Long.parseLong(jsonObject.getString(kID), 10);
 			tweet.createdAt = jsonObject.getString(kCREATED_AT);
 			tweet.user = User.fromJson(jsonObject.getJSONObject(kUSER));
 		} catch (JSONException e) {

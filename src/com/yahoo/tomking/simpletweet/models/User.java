@@ -21,10 +21,9 @@ public class User extends Model implements Serializable{
 	private static final String kUSER_NAME = "name";
 
 	// required by convention for serialized data
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 3L;
 	
-	// set unique true and make replace the conflict action
-    @Column(name = "uid", unique = true, onUniqueConflict = Column.ConflictAction.REPLACE)
+    @Column(name = "uid")
 	private long uid;
     
     @Column(name = kUSER_NAME)
@@ -59,7 +58,7 @@ public class User extends Model implements Serializable{
 		User u = new User();
 		try {
 			u.name = jsonObject.getString(kUSER_NAME);
-			u.uid = jsonObject.getLong(kUSER_ID);
+			u.uid = Long.parseLong(jsonObject.getString(kUSER_ID), 10);
 			u.screenName = jsonObject.getString(kSCREEN_NAME);
 			u.profileImageUrl = jsonObject.getString(kPROFILE_IMAGE_URL);
 			u.followersCount = jsonObject.getInt(kFOLLOWERS_COUNT);
