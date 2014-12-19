@@ -16,6 +16,7 @@
     <string name="bt_send_tweet_label">send tweet</string>
     <string name="title_activity_profile">Profile</string>
     <string name="profile_description_text">Twitter User Profile</string>
+    <string name="profile_image_description_text">Twitter User Profile</string>
     <string name="placeholder_user_name_text">User Name</string>
     <string name="placeholder_user_bio_text">User Bio</string>
 	<string name="placeholder_followers_text">0 Followers</string>

@@ -67,7 +67,7 @@ public class Tweet extends Model implements Serializable{
 	public static List<Tweet> fromJson(JSONArray json) {
 		List<Tweet> tweets = new ArrayList<>(json.length());
 		for (int i = 0; i < json.length(); i++) {
-			JSONObject tweetJson = null;
+			JSONObject tweetJson;
 			try {
 				tweetJson = json.getJSONObject(i);
 			} catch (JSONException e) {

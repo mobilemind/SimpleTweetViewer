@@ -2,6 +2,7 @@ package com.yahoo.tomking.simpletweet;
 
 import org.json.JSONObject;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -49,7 +50,10 @@ public class ProfileActivity extends FragmentActivity {
 	}
 
 	private void loadProfileResults(User u) {
-		getActionBar().setTitle("@" + u.getScreenName());
+        ActionBar myAB = getActionBar();
+        if (null != myAB) {
+            myAB.setTitle("@" + u.getScreenName());
+        }
 		populateProfileHeader(u);
 		populateProfileList(u);
 	}

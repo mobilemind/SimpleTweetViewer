@@ -10,7 +10,7 @@
         android:showAsAction="ifRoom"
         android:icon="@drawable/ic_profile"
         android:onClick="onProfileView"
-        android:title="Profile"
+        android:title="@string/title_activity_profile"
         />
     
     

@@ -50,30 +50,32 @@ public class TimelineActivity extends FragmentActivity {
 	
 	private void setupTabs() {
 		ActionBar actionBar = getActionBar();
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-		actionBar.setDisplayShowTitleEnabled(true);
+        if (null != actionBar) {
+            actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+            actionBar.setDisplayShowTitleEnabled(true);
 
-		Tab tab1 = actionBar
-			.newTab()
-			.setText("Home")
-			.setIcon(R.drawable.ic_home)
-			.setTag("HomeTimeLineFragment")
-			.setTabListener(
-				new FragmentTabListener<HomeTimeLineFragment>(R.id.flContainer, this, "home",
-						HomeTimeLineFragment.class));
-		actionBar.addTab(tab1);
-		Tab tab2 = actionBar
-			.newTab()
-			.setText("Mentions")
-			.setIcon(R.drawable.ic_mentions)
-			.setTag("MentionsTimeLineFragment")
-			.setTabListener(
-						new FragmentTabListener<MentionsTimeLineFragment>(
-								R.id.flContainer, this, "mentions",
-								MentionsTimeLineFragment.class));
-		actionBar.addTab(tab2);
-		
-		actionBar.selectTab(tab1);
+            Tab tab1 = actionBar
+                    .newTab()
+                    .setText("Home")
+                    .setIcon(R.drawable.ic_home)
+                    .setTag("HomeTimeLineFragment")
+                    .setTabListener(
+                            new FragmentTabListener<>(R.id.flContainer, this, "home",
+                                    HomeTimeLineFragment.class));
+            actionBar.addTab(tab1);
+            Tab tab2 = actionBar
+                    .newTab()
+                    .setText("Mentions")
+                    .setIcon(R.drawable.ic_mentions)
+                    .setTag("MentionsTimeLineFragment")
+                    .setTabListener(
+                            new FragmentTabListener<>(
+                                    R.id.flContainer, this, "mentions",
+                                    MentionsTimeLineFragment.class));
+            actionBar.addTab(tab2);
+
+            actionBar.selectTab(tab1);
+        }
 	}
 
 }

@@ -12,7 +12,8 @@
         android:layout_alignParentTop="true"
         android:paddingLeft="1dp"
         android:paddingTop="2dp"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/ic_launcher"
+        android:contentDescription="@string/profile_image_description_text"/>
 
     <TextView
         android:id="@+id/tvScreenName"
