@@ -23,10 +23,10 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:19.1.0'
+    compile 'com.android.support:support-v4:21.0.3'
     compile files('libs/ActiveAndroid-3.1-adcddac4c58.jar')
     compile files('libs/android-async-http-1.4.3.jar')
-    compile files('libs/android-support-v13.jar')
+    // compile files('libs/android-support-v13.jar')
     compile files('libs/codepath-oauth-0.3.0.jar')
     compile files('libs/codepath-utils.jar')
     compile files('libs/scribe-codepath.jar')
